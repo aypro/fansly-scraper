@@ -24,7 +24,7 @@ func (d *Downloader) DownloadStories(ctx context.Context, modelId, modelName str
 		return err
 	}
 
-	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName), "stories")
+	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName))
 	for _, subDir := range []string{"images", "videos", "audios"} {
 		if err = os.MkdirAll(filepath.Join(baseDir, subDir), os.ModePerm); err != nil {
 			return err

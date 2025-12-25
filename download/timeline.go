@@ -134,12 +134,7 @@ func (d *Downloader) DownloadTimeline(ctx context.Context, modelId, modelName st
 		return err
 	}
 
-	folderName := "timeline"
-	if wallID != "" {
-		folderName = fmt.Sprintf("wall_%s", wallID)
-	}
-
-	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName), folderName)
+	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName))
 	for _, subDir := range []string{"images", "videos", "audios"} {
 		if err = os.MkdirAll(filepath.Join(baseDir, subDir), os.ModePerm); err != nil {
 			return err

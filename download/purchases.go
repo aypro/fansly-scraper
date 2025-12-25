@@ -98,10 +98,10 @@ func (d *Downloader) DownloadPurchasedContent(ctx context.Context) error {
 	for _, accountInfo := range accountInfoMap {
 		var baseDir, modelNameForFile string
 		if accountInfo.Username == accountInfo.ID {
-			baseDir = filepath.Join(d.saveLocation, accountInfo.ID, "purchases")
+			baseDir = filepath.Join(d.saveLocation, accountInfo.ID)
 			modelNameForFile = accountInfo.ID
 		} else {
-			baseDir = filepath.Join(d.saveLocation, strings.ToLower(accountInfo.Username), "purchases")
+			baseDir = filepath.Join(d.saveLocation, strings.ToLower(accountInfo.Username))
 			modelNameForFile = accountInfo.Username
 		}
 

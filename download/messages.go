@@ -34,7 +34,7 @@ func (d *Downloader) DownloadMessages(ctx context.Context, modelId, modelName st
 		return nil
 	}
 
-	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName), "messages")
+	baseDir := filepath.Join(d.saveLocation, strings.ToLower(modelName))
 	for _, subDir := range []string{"images", "videos", "audios"} {
 		if err = os.MkdirAll(filepath.Join(baseDir, subDir), os.ModePerm); err != nil {
 			return err
