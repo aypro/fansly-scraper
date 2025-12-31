@@ -93,7 +93,7 @@ func (d *Downloader) DownloadM3U8(ctx context.Context, modelName string, m3u8URL
 	}
 
 	if !isDiagnosis {
-		if err := d.saveFileHash(modelName, hashString, outputFile, fileType); err != nil {
+		if err := d.saveFileHash(modelName, hashString, outputFile, fileType, postID); err != nil {
 			return fmt.Errorf("error saving hash for M3U8 file: %w", err)
 		}
 	}
@@ -354,6 +354,10 @@ func downloadFile(ctx context.Context, url string, fileName string, cookies map[
 		return err
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("failed to download segment: HTTP %d", resp.StatusCode)
+	}
 
 	out, err := os.Create(fileName)
 	if err != nil {
